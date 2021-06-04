@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TrafficMapper</string>
+    <string name="text">Plan trips more efficient, safe and faster!</string>
+    <string name="login">REGISTER</string>
+    <string name="email">email</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
