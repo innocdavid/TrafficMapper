@@ -14,9 +14,7 @@
         android:id="@+id/card_view2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp"
+        android:layout_margin="20dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="0dp"
         app:cardElevation="40dp">
@@ -29,6 +27,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:text="@string/login"
                 android:padding="10dp"
                 android:textSize="30sp"
@@ -37,21 +36,23 @@
                 android:gravity="center_horizontal" />
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="42dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/custom_input"
-                android:layout_margin="19dp"
                 android:drawableLeft="@drawable/ic_baseline_email_24"
                 android:drawablePadding="10dp"
                 android:drawableTint="@android:color/darker_gray"
                 android:hint="email"
                 android:inputType="textEmailAddress"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:textColor="@android:color/darker_gray"
                 android:textColorHint="@android:color/darker_gray" />
 
 
-            <LinearLayout
+          <!--  <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="19dp"
@@ -77,13 +78,41 @@
 
             </LinearLayout>
 
+            -->
+
             <Button
                 android:id="@+id/btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:backgroundTint="#3390FF"
                 android:text="SUBMIT"/>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/black"
+                android:layout_marginTop="280dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_margin="20dp"
+                android:orientation="horizontal">
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/google_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
 
 
 

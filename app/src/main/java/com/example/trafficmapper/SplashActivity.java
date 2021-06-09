@@ -8,6 +8,7 @@ import android.os.Handler;
 
 public class SplashActivity extends AppCompatActivity {
 
+
     Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
