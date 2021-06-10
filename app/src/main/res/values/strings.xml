@@ -4,6 +4,9 @@
     <string name="login">REGISTER</string>
     <string name="email">email</string>
 
+    <string name="facebook_app_id">2895842850743216</string>
+    <string name="fb_login_protocol_scheme">fb2895842850743216</string>
+
 
 
 </resources>

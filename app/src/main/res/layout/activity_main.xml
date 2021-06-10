@@ -14,7 +14,7 @@
         android:id="@+id/card_view2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="25dp"
+        android:layout_margin="20dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="0dp"
         app:cardElevation="40dp">
@@ -95,28 +95,27 @@
             <View
                 android:layout_width="match_parent"
                 android:background="@color/black"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="250dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_height="1dp"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:orientation="horizontal">
 
                 <com.google.android.gms.common.SignInButton
                     android:id="@+id/google_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
 
                 <com.facebook.login.widget.LoginButton
-                    android:id="@+id/facebook_btn"
-                    android:layout_width="89dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="70dp"/>
+                    android:id="@+id/login_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="57dp"
+                    android:layout_marginLeft="80dp" />
 
 
             </LinearLayout>
