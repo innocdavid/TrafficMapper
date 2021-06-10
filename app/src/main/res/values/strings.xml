@@ -3,7 +3,6 @@
     <string name="text">Plan trips more efficient, safe and faster!</string>
     <string name="login">REGISTER</string>
     <string name="email">email</string>
-    <string name="facebook_app_id">863691783971921</string>
-    <string name="fb_login_protocol_scheme">fb863691783971921</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="default_web_client_id" translatable="false">960933869111-lieui5gchgtp8g3pdfuq3e71vj3nr2tr.apps.googleusercontent.com</string>
+
 </resources>
