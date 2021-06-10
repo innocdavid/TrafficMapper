@@ -4,5 +4,7 @@
     <string name="login">REGISTER</string>
     <string name="email">email</string>
     <string name="default_web_client_id" translatable="false">960933869111-lieui5gchgtp8g3pdfuq3e71vj3nr2tr.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">2895842850743216</string>
+    <string name="fb_login_protocol_scheme">fb2895842850743216</string>
 
 </resources>
