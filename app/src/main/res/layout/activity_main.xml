@@ -101,20 +101,21 @@
                 android:layout_height="1dp"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
                 android:layout_margin="20dp"
                 android:orientation="horizontal">
 
                 <com.google.android.gms.common.SignInButton
                     android:id="@+id/google_btn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="106dp"
                     android:layout_height="match_parent" />
 
                 <com.facebook.login.widget.LoginButton
-                    android:id="@+id/login_button"
+                    android:id="@+id/facebook_btn"
+                    android:layout_marginTop="3dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="57dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="80dp" />
 
 
