@@ -6,7 +6,13 @@
 
     <string name="facebook_app_id">2895842850743216</string>
     <string name="fb_login_protocol_scheme">fb2895842850743216</string>
-
+    <string name="phone">775640887</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="policy">The phone number is basically collected for one main reason.
+                            To enhance a better experience while using the app by sending SMS about
+                            highly congested traffic</string>
+    <string name="submit">SUBMIT</string>
+    <string name="verify">VERIFY</string>
 
 
 </resources>

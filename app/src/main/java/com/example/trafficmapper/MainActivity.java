@@ -4,23 +4,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
-
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-;
-import com.facebook.AccessToken;
+
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
+
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -35,14 +37,15 @@ import com.google.firebase.auth.AuthCredential;
 
 ;
 
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
-import java.lang.reflect.Array;
+
 import java.util.Arrays;
-import java.util.Collection;
+
 
 import static com.example.trafficmapper.R.layout.activity_main;
 
@@ -56,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private static final String EMAIL = "email";
 
+    private EditText editText;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onStart() {
@@ -79,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         createRequest();
         findViewById(R.id.google_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loginButton = (LoginButton)findViewById(R.id.facebook_btn);
+        loginButton = findViewById(R.id.facebook_btn);
 
         loginButton.setReadPermissions(Arrays.asList(EMAIL));
         // If you are using in a fragment, call loginButton.setFragment(this);
@@ -99,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 // App code
                 Log.d("demo", "login successful");
+                startActivity(new Intent(MainActivity.this, TelephoneActivity.class));
             }
 
             @Override
@@ -117,7 +124,45 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        //email login
+        editText = findViewById(R.id.email);
+        findViewById(R.id.email_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                creatUser();
+
+            }
+        });
+
+
+
+
+    }
+
+    //registering the user on firebase database.
+    private void creatUser() {
+        String email = editText.getText().toString();
+
+        if (TextUtils.isEmpty(email)) {
+            editText.setError("Email cannot be empty");
+            editText.requestFocus();
+        }else {
+            mAuth.createUserWithEmailAndPassword(email, "").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<AuthResult> task) {
+
+                    if (task.isSuccessful()){
+                        progressDialog.setMessage("loading...!");
+
+                        Toast.makeText(MainActivity.this, "Email registered", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, TelephoneActivity.class));
+                    }else{
+                        Toast.makeText(MainActivity.this, "Registration rrror" + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
 
     }
 
