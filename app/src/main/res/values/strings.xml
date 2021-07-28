@@ -13,6 +13,16 @@
                             highly congested traffic</string>
     <string name="submit">SUBMIT</string>
     <string name="verify">VERIFY</string>
+    <string name="trafficmapper">TrafficMapper</string>
+    <string name="slogan">Plan Trips. Travel safe, quickly and efficiently.</string>
+
+    <string name="code">CO DE</string>
+    <string name="verification">verification</string>
+    <string name="verify_otc">VERIFY OTC</string>
+    <string name="title_activity_maps">Map</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="phone_number">Phone Number</string>
 
 
 </resources>

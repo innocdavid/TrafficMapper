@@ -7,80 +7,66 @@
     android:background="@color/white"
     tools:context=".TelephoneActivity">
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardElevation="10dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/text_title"
-            android:layout_width="match_parent"
+            android:layout_width="290dp"
             android:layout_height="wrap_content"
-            android:text="@string/mobile_number"
-            android:layout_margin="30dp"
-            android:textAlignment="center"
-            android:textSize="20dp"
+            android:fontFamily="@font/muli_extralight"
+            android:padding="10dp"
+            android:text="@string/phone_number"
             android:textColor="@color/black"
-            android:gravity="center_horizontal" />
+            android:textSize="60sp" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/linear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:orientation="horizontal">
-
-                <com.hbb20.CountryCodePicker
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:ccpDialog_textColor="@android:color/darker_gray"
-                    app:ccp_autoDetectCountry="true"
-                    app:ccp_showNameCode="false" />
-
-               <com.google.android.material.textfield.TextInputEditText
-
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:background="@drawable/custom_input"
-                   android:hint="@string/phone"
-                   android:inputType="number"
-                   android:padding="10dp"
-                   android:textColor="@android:color/darker_gray"
-                   android:textColorHint="@android:color/darker_gray" />
-
-           </LinearLayout>
-        <Button
-            android:id="@+id/email_btn"
-            android:layout_width="match_parent"
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/countryCodePicker"
+            android:layout_width="114dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:backgroundTint="#3390FF"
-            android:text="@string/verify"/>
+            android:layout_margin="6dp"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_showFlag="true"
+            app:ccp_showFullName="false"
+            app:ccp_showNameCode="false"
+            app:ccp_showPhoneCode="true" />
 
-
-
-        <TextView
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/editextOne"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="600dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:textAlignment="center"
-            android:text="@string/policy"
-            android:textColor="@android:color/background_dark"
-            android:gravity="center_horizontal" />
+            android:layout_margin="6dp"
+            android:background="@drawable/edittext"
+            android:hint="775640887"
+            android:inputType="number"
+            android:singleLine="true"
+            android:padding="10dp"
+            android:textColor="#808080"
+            android:textColorHint="#808080" />
 
 
+    </LinearLayout>
 
-
-    </androidx.cardview.widget.CardView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="CallVerifyOTPScreen"
+        android:text="@string/submit"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/rounded_button"
+        android:layout_marginTop="340dp"/>
 
 </RelativeLayout>
