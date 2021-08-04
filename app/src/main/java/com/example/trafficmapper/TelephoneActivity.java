@@ -54,10 +54,6 @@ public class TelephoneActivity extends AppCompatActivity {
         countryCodePicker = findViewById(R.id.countryCodePicker);
         countryCodePicker.registerCarrierNumberEditText(phoneNumber);
 
-
-
-
-
     }
 
 

@@ -38,15 +38,8 @@ public class VerifyOTP extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
-    private static final String TAG = "PhoneAuth";
-    private String phoneVerificationId;
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
-            verificatonCallbacks;
-    private PhoneAuthProvider.ForceResendingToken
-            resendToken;
+   private String codeBySystem;
 
-    private String number;
-    private String codeBySystem;
 
 
     @Override
@@ -58,65 +51,56 @@ public class VerifyOTP extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        Intent intent = getIntent();
-        number = intent.getStringExtra("phoneNumber");
+       String _phoneNo = getIntent().getStringExtra("phoneNumber");
 
-
-
-
+        sendVerificationCodeToUser(_phoneNo);
 
     }
 
 
-    public void sendCode(View view) {
+    public void sendVerificationCodeToUser(String phoneNumber) {
 
-
-
-        setUpVerificationCallbacks();
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                number,
+                phoneNumber,
                 60,
                 TimeUnit.SECONDS,
                 this,
-                verificatonCallbacks);
+                mCallbacks);
 
     }
 
-    private void setUpVerificationCallbacks() {
+   private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks
+           = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-        verificatonCallbacks =
-                new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+       @Override
+       public void onCodeSent(@NonNull @NotNull String s, @NonNull @NotNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+           super.onCodeSent(s, forceResendingToken);
+           codeBySystem = s;
+       }
 
-                    @Override
-                    public void onCodeSent(@NonNull @NotNull String s, @NonNull @NotNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                        super.onCodeSent(s, forceResendingToken);
-                        codeBySystem = s;
-                    }
+       @Override
+       public void onVerificationCompleted(@NonNull @NotNull PhoneAuthCredential phoneAuthCredential) {
+            String code = phoneAuthCredential.getSmsCode();
+            if(code!=null){
+                pinView.setText(code);
+                verifyCode(code);
+            }
+       }
 
-                    @Override
-                    public void onVerificationCompleted(@NonNull @NotNull PhoneAuthCredential phoneAuthCredential) {
-                        String code = phoneAuthCredential.getSmsCode();
-                        if (code!=null){
-                            pinView.setText(code);
-                            signInWithPhoneAuthCredential(phoneAuthCredential);
-                        }
+       @Override
+       public void onVerificationFailed(@NonNull @NotNull FirebaseException e) {
 
+           Toast.makeText(VerifyOTP.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
-                    }
+       }
+   };
 
-                    @Override
-                    public void onVerificationFailed(@NonNull @NotNull FirebaseException e) {
+    private void verifyCode(String code) {
 
-                        if(e instanceof FirebaseAuthInvalidCredentialsException){
-                            Toast.makeText(VerifyOTP.this, "invalid credentials " + e.getLocalizedMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                        }else if(e instanceof FirebaseTooManyRequestsException){
-                            Toast.makeText(VerifyOTP.this, "SMS Quota exceeded", Toast.LENGTH_SHORT).show();
-                        }
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeBySystem, code);
 
-                    }
-                };
+        signInWithPhoneAuthCredential(credential);
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
@@ -125,21 +109,32 @@ public class VerifyOTP extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(VerifyOTP.this, "SMS sent successfully", Toast.LENGTH_SHORT).show();
 
-                            FirebaseUser user = task.getResult().getUser();
+                            Toast.makeText(VerifyOTP.this, "verification complete", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(VerifyOTP.this, GoogleActivity.class);
+                            startActivity(intent);
+                            finish();
 
-                            startActivity(new Intent(VerifyOTP.this, MapsActivity.class));
-                            // Update UI
                         } else {
-                            // Sign in failed, display a message and update the UI
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
+                                Toast.makeText(VerifyOTP.this, "verification failed, try again!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                 });
     }
+
+
+    public void CallNextVerifyOTPScreen(View view) {
+
+        String code = pinView.getText().toString();
+
+        if(!code.isEmpty()){
+
+            verifyCode(code);
+        }
+    }
+
 }
